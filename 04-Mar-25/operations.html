@@ -1,81 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><mark>Arithmetic Operations</mark></title>
-    <style>
-    
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 2px double rgb(0, 0, 0);
-            padding: 20px;
-            text-align: center;
-        }
-        th {
-            background-color: #f4f4f4ad;
-        }
-    </style>
-    <script>
-        function generateTable() {
-            let operations = ['+', '-', '*', '/', '%', '**', '++', '--'];
-            let tableBody = document.getElementById("tableBody");
-            tableBody.innerHTML = ""; // Clear previous values
-            
-            let x = parseInt(document.getElementById("xValue").value);
-            let y = parseInt(document.getElementById("yValue").value);
-            
-            if (isNaN(x) || isNaN(y)) {
-                alert("Please enter valid numbers for X and Y.");
-                return;
-            }
-            
-            for (let i = 0; i < 8; i++) {
-                let operator = operations[i % operations.length];
-                let expression, result;
-                
-                switch (operator) {
-                    case '+': result = x + y; expression = `${x} + ${y}`; break;
-                    case '-': result = x - y; expression = `${x} - ${y}`; break;
-                    case '*': result = x * y; expression = `${x} * ${y}`; break;
-                    case '/': result = (y !== 0) ? (x / y).toFixed(2) : 'Undefined'; expression = `${x} / ${y}`; break;
-                    case '%': result = (y !== 0) ? x % y : 'Undefined'; expression = `${x} % ${y}`; break;
-                    case '**': result = x ** y; expression = `${x} ** ${y}`; break;
-                    case '++': result = ++x; expression = `++(${x - 1})`; break;
-                    case '--': result = --y; expression = `--(${y + 1})`; break;
-                }
-                
-                let row = `<tr>
-                    <td>${x}</td>
-                    <td>${y}</td>
-                    <td>${operator}</td>
-                    <td>${expression}</td>
-                    <td>${result}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            }
-        }
-    </script>
+<style>
+table, th, td {
+  border: 2px solid black;
+  border-collapse: collapse;
+ 
+}
+tr{
+    text-align: center;
+}
+</style>
 </head>
 <body>
-    <h2>Arithmetic Operations</h2>
-    <label for="xValue">Enter X Value:</label>
-    <input type="number" id="xValue" placeholder="Enter X">
-    <label for="yValue">Enter Y Value:</label>
-    <input type="number" id="yValue" placeholder="Enter Y">
-    <button onclick="generateTable()">Generate Table</button>
-    <table>
-        <tr>
-            <th>X Value</th>
-            <th>Y Value</th>
-            <th>Operator</th>
-            <th>Expression</th>
-            <th>Result</th>
-        </tr>
-        <tbody id="tableBody"></tbody>
-    </table>
+    <h1>Arthematic & String operation</h1>
+    <div>
+        <label for="txt1">first value</label>
+        <input type="text" id="val1" placeholder="Enter first value">
+    </div>
+    <div>
+        <label for="txt1">second value</label>
+        <input type="text" id="val2" placeholder="Enter second value">
+    </div>
+    <br>
+    <div><button onclick="getResult()">Calculate</button></div>
+    
+    <div id="fnlresult"></div>
+
+
+  
+  <script>
+    function getResult() {
+
+        var val1 = document.getElementById('val1').value;
+        var val2 = document.getElementById('val2').value;
+        var result;
+
+        if(!isNaN(val1) && !isNaN(val2)){
+        let    resulta = parseFloat(val1) + parseFloat(val2);
+        let    results = parseFloat(val1) - parseFloat(val2);
+        let    resultm = parseFloat(val1) * parseFloat(val2);
+        let    resultd = parseFloat(val1) / parseFloat(val2);
+        let    resultmod = parseFloat(val1) % parseFloat(val2);
+        let    resultinc = parseFloat(val1);
+        let    resultdec = parseFloat(val1);
+        let    resultexp = parseFloat(val1) ** parseFloat(val2);
+        resultinc++;
+        resultdec--;
+        
+ result=`<table style="width:100%">
+  <tr>
+    <th>x</th>
+    <th>y</th> 
+    <th>op</th>
+    <th>exp</th>
+    <th>Result</th>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>+</td>
+    <td>${val1}+${val2}</td>
+    <td>${resulta}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>-</td>
+    <td>${val1}-${val2}</td>
+    <td>${results}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>*</td>
+    <td>${val1}*${val2}</td>
+    <td>${resultm}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>/</td>
+    <td>${val1}/${val2}</td>
+    <td>${resultd}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>%</td>
+    <td>${val1}%${val2}</td>
+    <td>${resultmod}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>++</td>
+    <td>${val1}++</td>
+    <td>${resultinc}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>--</td>
+    <td>${val1}--</td>
+    <td>${resultdec}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td></td>
+    <td>${val1}${val2}</td>
+    <td>${resultexp}</td>
+  </tr>
+</table>`;  
+        }else{
+          let resultconcat = val1 + val2;
+          let concatArray = resultconcat.split('');
+          let reverseArry = concatArray.reverse();
+          let reversestring =reverseArry.join('');
+         result=`
+         <table style="width:100%">
+  <tr>
+    <th>x</th>
+    <th>y</th> 
+    <th>concat</th>
+    <th>length</th>
+    <th>reverse</th>
+
+  </tr>
+  <tr >
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>${resultconcat}</td>
+    <td>${resultconcat.length}</td>
+    <td>${reversestring}</td>
+
+  </tr>
+  </table>`
+        }
+        document.getElementById('fnlresult').innerHTML = result;
+
+    }
+</script>
+
+
 </body>
 </html>
-
