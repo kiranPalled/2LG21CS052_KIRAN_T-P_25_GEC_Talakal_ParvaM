@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Concatenation Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            
+            color: white;
+        }
+        input {
+            width: 90%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th><mark>Value 1</mark></th>
+            <th><mark>Value 2</mark></th>
+            <th><b><mark>Concatenated Result</mark></b></th>
+            <th><b><mark>Reverse Concatenation</mark></b></th>
+        </tr>
+        <tr>
+            <td><input type="text" id="val1" oninput="concatenate()"></td>
+            <td><input type="text" id="val2" oninput="concatenate()"></td>
+            <td id="concatResult">-</td>
+            <td id="reverseConcat">-</td>
+        </tr>
+    </table>
+
+    <script>
+        function concatenate() {
+            let val1 = document.getElementById("val1").value;
+            let val2 = document.getElementById("val2").value;
+            document.getElementById("concatResult").textContent = val1 + val2;
+            document.getElementById("reverseConcat").textContent = val2 + val1;
+        }
+    </script>
+</body>
+</html>
