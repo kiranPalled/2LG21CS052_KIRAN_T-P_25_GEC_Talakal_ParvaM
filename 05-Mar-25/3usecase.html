@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic Expressions</title>
+    <style>
+        .expression-box {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            font-family: Arial, sans-serif;
+            width: 250px;
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+        }
+        #result {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        .doraemon-container {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        .doraemon-container img {
+            width: 150px;
+            height: auto;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Algebraic Expressions Calculator</h2>
+    <h3><u>NOTE: The values should be less than 10</u></h3>
+    <br>
+    <div class="input-container">
+        <label for="x">Enter value of X: </label>
+        <input type="number" id="x" />
+        <br>
+        <label for="y">Enter value of Y: </label>
+        <input type="number" id="y" />
+        <br>
+        <button onclick="calculateExpressions()">Calculate for answers</button>
+    </div>
+    <div id="result"></div>
+    
+    <script>
+        function calculateExpressions() {
+            let a = parseInt(document.getElementById("x").value);
+            let b = parseInt(document.getElementById("y").value);
+            
+            if (a < 10 && b < 10) {
+                let result = "";
+                
+                result += `<div class='expression-box'>
+                            <p><strong>a² - b² = (a - b)(a + b)</strong></p>
+                            <p>${a}² - ${b}² = (${a} - ${b})(${a} + ${b})</p>
+                            <p>${a * a} - ${b * b} = (${a - b})(${a + b})</p>
+                            <p>Result: ${a * a - b * b}</p>
+                          </div>`;
+                
+                result += `<div class='expression-box'>
+                            <p><strong>(a + b)² = a² + 2ab + b²</strong></p>
+                            <p>(${a} + ${b})² = ${a}² + 2(${a})(${b}) + ${b}²</p>
+                            <p>${(a + b) ** 2} = ${a * a} + ${2 * a * b} + ${b * b}</p>
+                            <p>Result: ${(a + b) ** 2}</p>
+                          </div>`;
+                
+                result += `<div class='expression-box'>
+                            <p><strong>a² + b² = (a + b)² - 2ab</strong></p>
+                            <p>${a}² + ${b}² = (${a} + ${b})² - 2(${a})(${b})</p>
+                            <p>${a * a} + ${b * b} = ${(a + b) ** 2} - ${2 * a * b}</p>
+                            <p>Result: ${a * a + b * b}</p>
+                          </div>`;
+                
+                result += `<div class='expression-box'>
+                            <p><strong>(a - b)² = a² - 2ab + b²</strong></p>
+                            <p>(${a} - ${b})² = ${a}² - 2(${a})(${b}) + ${b}²</p>
+                            <p>${(a - b) ** 2} = ${a * a} - ${2 * a * b} + ${b * b}</p>
+                            <p>Result: ${(a - b) ** 2}</p>
+                          </div>`;
+                
+                result += `<div class='expression-box'>
+                            <p><strong>a³ - b³ = (a - b)(a² + ab + b²)</strong></p>
+                            <p>${a}³ - ${b}³ = (${a} - ${b})(${a}² + (${a})(${b}) + ${b}²)</p>
+                            <p>${a ** 3} - ${b ** 3} = (${a - b})(${a * a} + ${a * b} + ${b * b})</p>
+                            <p>Result: ${a ** 3 - b ** 3}</p>
+                          </div>`;
+                
+                document.getElementById("result").innerHTML = result;
+                document.getElementById("doraemon").style.display = "block";
+            } else {
+                document.getElementById("result").innerHTML = "Values of X and Y should be less than 10.";
+                document.getElementById("doraemon").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

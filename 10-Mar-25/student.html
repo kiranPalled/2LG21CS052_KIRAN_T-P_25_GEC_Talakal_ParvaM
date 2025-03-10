@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+        }
+        table {
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mainPage" class="container">
+        <h1>Student Management System</h1>
+        <button onclick="showForm('studentDetails')">Fill Student Details</button>
+        <button onclick="showForm('basicForm')">Fill Basic Form</button>
+        <button onclick="showForm('courseDetails')">Fill Course Details</button>
+        <button onclick="showForm('paymentDetails')">Fill Payment Details</button>
+    </div>
+
+    <!-- Student Details Form -->
+    <div id="studentDetails" class="container" style="display:none;">
+        <h3>Student Details</h3>
+        <table border="10">
+            <thead>
+                <tr>
+                    <th><h3>Name</h3></th>
+                    <th><h3>ID</h3></th>
+                    <th><h3>Address</h3></th>
+                    <th><h3>Age</h3></th>
+                    <th><h3>Action</h3></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button onclick="addRow()">Add Student</button>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <!-- Course Details Form -->
+    <div id="courseDetails" class="container" style="display:none;">
+        <h3>Course Details</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Course ID</th>
+                    <th>Duration</th>
+                    <th>Instructor</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button onclick="addCourseRow()">Add Course</button>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        function showForm(formId) {
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById(formId).style.display = "block";
+        }
+
+        function goBack() {
+            document.querySelectorAll('div[id$="Details"]').forEach(form => form.style.display = "none");
+            document.getElementById("mainPage").style.display = "block";
+        }
+
+        function addRow() {
+            let table = document.querySelector("#studentDetails tbody");
+            let newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td><input type="text" placeholder="Enter Name"></td>
+                <td><input type="text" placeholder="Enter ID"></td>
+                <td><input type="text" placeholder="Enter Address"></td>
+                <td><input type="number" placeholder="Enter Age"></td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            `;
+            table.appendChild(newRow);
+        }
+
+        function addCourseRow() {
+            let table = document.querySelector("#courseDetails tbody");
+            let newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td><input type="text" placeholder="Enter Course Name"></td>
+                <td><input type="text" placeholder="Enter Course ID"></td>
+                <td><input type="text" placeholder="Enter Duration"></td>
+                <td><input type="text" placeholder="Enter Instructor"></td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            `;
+            table.appendChild(newRow);
+        }
+
+        function deleteRow(btn) {
+            btn.closest("tr").remove();
+        }
+    </script>
+
+</body>
+</html>

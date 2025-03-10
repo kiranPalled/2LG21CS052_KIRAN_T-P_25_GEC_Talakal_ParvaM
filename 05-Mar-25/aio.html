@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALGEBRIC, ARITHMATIC, STRING OPERATIONS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px gray;
+            background: #f4f4f4;
+        }
+        input {
+            padding: 5px;
+            margin: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>AIO OPERATIONS</h2>
+        <p><b>Note:</b> The input is checked for type:<br> Numbers under 10 undergo algebraic calculations, otherwise it perform arithmetic. <br>Strings are processed for concatenation, reversal, and length.</p>
+        <label for="input1">Enter Value 1:</label>
+        <input type="text" id="input1">
+        <br>
+        <label for="input2">Enter Value 2:</label>
+        <input type="text" id="input2">
+        <br>
+        <button onclick="processInput()">Process</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function processInput() {
+            let input1 = document.getElementById("input1").value.trim();
+            let input2 = document.getElementById("input2").value.trim();
+            let outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "";
+
+            let num1 = parseFloat(input1);
+            let num2 = parseFloat(input2);
+
+            if (!isNaN(num1) && !isNaN(num2)) {
+                if (num1 < 10 && num2 < 10) {
+                    let table = `
+                    <table>
+                        <tr><th>Expression</th><th>Expantion</th><th>Calculation (applying input values a & b)</th><th>Result</th></tr>
+                        <tr><td>(a + b)²</td><td>a² + b² + 2ab</td><td>(${num1}² + ${num2}² + 2(${num1} × ${num2}))</td><td>${(num1 + num2) ** 2}</td></tr>
+                        <tr><td>(a - b)²</td><td>a² + b² - 2ab</td><td>(${num1}² + ${num2}² - 2(${num1} × ${num2}))</td><td>${(num1 - num2) ** 2}</td></tr>
+                        <tr><td>a² - b²</td><td>(a - b)(a + b)</td><td>(${num1}² - ${num2}² = (${num1} - ${num2}) × (${num1} + ${num2}))</td><td>${num1 ** 2 - num2 ** 2}</td></tr>
+                        <tr><td>(a + b)³</td><td>a³ + b³ + 3a²b + 3ab²</td><td>(${num1}³ + ${num2}³ + 3(${num1}² × ${num2}) + 3(${num1} × ${num2}²))</td><td>${(num1 + num2) ** 3}</td></tr>
+                        <tr><td>(a - b)³</td><td>a³ - b³ - 3a²b + 3ab²</td><td>(${num1}³ - ${num2}³ - 3(${num1}² × ${num2}) + 3(${num1} × ${num2}²))</td><td>${(num1 - num2) ** 3}</td></tr>
+                    </table>`;
+                    outputDiv.innerHTML = table;
+                } else {
+                    let table = `
+                    <table>
+                        <tr><th>Operation</th><th>Expression</th><th>Result</th></tr>
+                        <tr><td>Addition</td><td>${num1} + ${num2} = ${num1 + num2}</td><td>${num1 + num2}</td></tr>
+                        <tr><td>Subtraction</td><td>${num1} - ${num2} = ${num1 - num2}</td><td>${num1 - num2}</td></tr>
+                        <tr><td>Multiplication</td><td>${num1} × ${num2} = ${num1 * num2}</td><td>${num1 * num2}</td></tr>
+                        <tr><td>Division</td><td>${num1} ÷ ${num2} = ${(num1 / num2).toFixed(2)}</td><td>${(num1 / num2).toFixed(2)}</td></tr>
+                    </table>`;
+                    outputDiv.innerHTML = table;
+                }
+            } else {
+                let concatResult = input1 + input2;
+                let reversedResult = concatResult.split('').reverse().join('');
+                let table = `
+                <table>
+                    <tr><th>Value 1</th><th>Value 2</th><th>Concatenated</th><th>Reversed</th><th>Length</th></tr>
+                    <tr><td>${input1}</td><td>${input2}</td><td>${concatResult}</td><td>${reversedResult}</td><td>${concatResult.length}</td></tr>
+                </table>`;
+                outputDiv.innerHTML = table;
+            }
+        }
+    </script>
+</body>
+</html>

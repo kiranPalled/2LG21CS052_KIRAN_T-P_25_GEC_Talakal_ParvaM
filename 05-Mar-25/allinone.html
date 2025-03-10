@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number & String Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px gray;
+        }
+        input {
+            padding: 5px;
+            margin: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            text-align: left;
+            padding: 15px;
+            border: 1px solid black;
+            border-radius: 10px;
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Number & String Operations</h2>
+        <label for="input1">Enter Value 1:</label>
+        <input type="text" id="input1">
+        <br>
+        <label for="input2">Enter Value 2:</label>
+        <input type="text" id="input2">
+        <br>
+        <button onclick="processInput()">Process</button>
+
+        <div id="output" class="output"></div>
+    </div>
+
+    <script>
+        function processInput() {
+            let input1 = document.getElementById("input1").value.trim();
+            let input2 = document.getElementById("input2").value.trim();
+            let outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "";  // Clear previous results
+
+            // Check if both inputs are numbers
+            let num1 = parseFloat(input1);
+            let num2 = parseFloat(input2);
+
+            if (!isNaN(num1) && !isNaN(num2)) {  // If both are numbers
+                if (num1 < 10 && num2 < 10) {
+                    outputDiv.innerHTML = "<h3>Algebraic Expressions</h3>";
+                    outputDiv.innerHTML += `
+                        <p><strong>a² - b² = (a - b)(a + b)</strong></p>
+                        <p>${num1}² - ${num2}² = (${num1} - ${num2})(${num1} + ${num2})</p>
+                        <p>Result: ${num1 * num1 - num2 * num2}</p>
+                        <hr>
+                        <p><strong>(a + b)² = a² + 2ab + b²</strong></p>
+                        <p>(${num1} + ${num2})² = ${num1}² + 2(${num1})(${num2}) + ${num2}²</p>
+                        <p>Result: ${(num1 + num2) ** 2}</p>
+                    `;
+                } else {
+                    outputDiv.innerHTML = "<h3>Arithmetic Operations</h3>";
+                    outputDiv.innerHTML += `
+                        <p><strong>Addition:</strong> ${num1} + ${num2} = ${num1 + num2}</p>
+                        <p><strong>Subtraction:</strong> ${num1} - ${num2} = ${num1 - num2}</p>
+                        <p><strong>Multiplication:</strong> ${num1} × ${num2} = ${num1 * num2}</p>
+                        <p><strong>Division:</strong> ${num1} ÷ ${num2} = ${(num1 / num2).toFixed(2)}</p>
+                    `;
+                }
+            } else {  // If any input is not a number (String case)
+                outputDiv.innerHTML = "<h3>String Operations</h3>";
+                outputDiv.innerHTML += `
+                    <p><strong>Concatenation:</strong> ${input1} + ${input2} = ${input1 + input2}</p>
+                    <p><strong>String 1 Length:</strong> ${input1.length}</p>
+                    <p><strong>String 2 Length:</strong> ${input2.length}</p>
+                    <p><strong>Reverse of String 1:</strong> ${input1.split('').reverse().join('')}</p>
+                    <p><strong>Reverse of String 2:</strong> ${input2.split('').reverse().join('')}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
