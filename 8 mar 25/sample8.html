@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+ 
+}
+tr{
+    text-align: center;
+}
+</style>
+</head>
+<body>
+    <h1>JS Example 4</h1>
+    <div>
+        <label for="txt1">value 1</label>
+        <input type="text" id="val1" placeholder="Enter first value">
+    </div>
+    <div>
+        <label for="txt1">value 2</label>
+        <input type="text" id="val2" placeholder="Enter second value">
+    </div>
+    <br>
+    <div><button onclick="getResult()">Calculate</button></div>
+    
+    <div id="fnlresult"></div>
+
+
+  
+  <script>
+    function getResult() {
+
+        var val1 = document.getElementById('val1').value;
+        var val2 = document.getElementById('val2').value;
+        var result;
+
+        if(!isNaN(val1) && !isNaN(val2)){
+        let    resulta = parseFloat(val1) + parseFloat(val2);
+        let    results = parseFloat(val1) - parseFloat(val2);
+        let    resultm = parseFloat(val1) * parseFloat(val2);
+        let    resultd = parseFloat(val1) / parseFloat(val2);
+        let    resultmod = parseFloat(val1) % parseFloat(val2);
+        let    resultinc = parseFloat(val1);
+        let    resultdec = parseFloat(val1);
+        let    resultexp = parseFloat(val1) ** parseFloat(val2);
+        resultinc++;
+        resultdec--;
+        
+ result=`<table style="width:100%">
+  <tr>
+    <th>x</th>
+    <th>y</th> 
+    <th>op</th>
+    <th>exp</th>
+    <th>Result</th>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>+</td>
+    <td>${val1}+${val2}</td>
+    <td>${resulta}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>-</td>
+    <td>${val1}-${val2}</td>
+    <td>${results}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>*</td>
+    <td>${val1}*${val2}</td>
+    <td>${resultm}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>/</td>
+    <td>${val1}/${val2}</td>
+    <td>${resultd}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>%</td>
+    <td>${val1}%${val2}</td>
+    <td>${resultmod}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>++</td>
+    <td>${val1}++</td>
+    <td>${resultinc}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>--</td>
+    <td>${val1}--</td>
+    <td>${resultdec}</td>
+  </tr>
+  <tr>
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>**</td>
+    <td>${val1}**${val2}</td>
+    <td>${resultexp}</td>
+  </tr>
+</table>`;  
+        }else{
+          let resultconcat = val1 + val2;
+          let concatArray = resultconcat.split('');
+          let reverseArry = concatArray.reverse();
+          let reversestring =reverseArry.join('');
+         result=`
+         <table style="width:100%">
+  <tr>
+    <th>x</th>
+    <th>y</th> 
+    <th>concat</th>
+    <th>length</th>
+    <th>reverse</th>
+
+  </tr>
+  <tr >
+    <td>${val1}</td>
+    <td>${val2}</td>
+    <td>${resultconcat}</td>
+    <td>${resultconcat.length}</td>
+    <td>${reversestring}</td>
+
+  </tr>
+  </table>`
+        }
+        document.getElementById('fnlresult').innerHTML = result;
+
+    }
+</script>
+
+
+</body>
+</html>
+
